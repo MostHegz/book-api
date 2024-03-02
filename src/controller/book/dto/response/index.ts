@@ -1,3 +1,4 @@
-import { CreateBookResponse } from './create-book.response';
+import { BookResponse } from './create-book.response';
+import { GetBooksResponse } from './get-books.response';
 
-export { CreateBookResponse };
+export { BookResponse, GetBooksResponse };
