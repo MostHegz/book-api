@@ -2,7 +2,7 @@ import { Mapper, MappingProfile, autoMap, createMap } from '@automapper/core';
 import { AutomapperProfile, InjectMapper } from '@automapper/nestjs';
 import { Injectable } from '@nestjs/common';
 import { Book } from '../../../../entity';
-import { CreateBookResponse } from '../response';
+import { BookResponse } from '../response';
 import { CreateBookRequest } from '../request';
 
 @Injectable()
@@ -16,7 +16,7 @@ export class BookProfile extends AutomapperProfile {
 			createMap(
 				mapper,
 				Book,
-				CreateBookResponse,
+				BookResponse,
 				autoMap('id'),
 				autoMap('authorName'),
 				autoMap('title'),

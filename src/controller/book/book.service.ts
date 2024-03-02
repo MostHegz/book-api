@@ -1,10 +1,10 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { BookRepository } from '../../repository/book.repository';
 import { Book } from '../../entity';
-import { CreateBookRequest } from './dto/request';
+import { CreateBookRequest, GetBooksRequest } from './dto/request';
 import { Mapper } from '@automapper/core';
 import { InjectMapper } from '@automapper/nestjs';
-import { CreateBookResponse } from './dto/response';
+import { BookResponse, GetBooksResponse } from './dto/response';
 
 @Injectable()
 export class BookService {
@@ -14,11 +14,21 @@ export class BookService {
 		@InjectMapper() private readonly mapper: Mapper,
 	) {}
 
-	async create(createBookRequest: CreateBookRequest): Promise<CreateBookResponse> {
+	async create(createBookRequest: CreateBookRequest): Promise<BookResponse> {
 		this.logger.log(`Creating book with ${createBookRequest}`);
 		const book = this.mapper.map(createBookRequest, CreateBookRequest, Book);
 		const createdBook = await this.bookRepository.save(book);
-		const bookResponse = this.mapper.map(createdBook, Book, CreateBookResponse);
+		const bookResponse = this.mapper.map(createdBook, Book, BookResponse);
 		return bookResponse;
+	}
+
+	async find(query: GetBooksRequest): Promise<GetBooksResponse> {
+		this.logger.log(`Finding books with ${query}`);
+		const [books, count] = await this.bookRepository.getMany(query.searchTerm, query.skipCount, query.pageSize);
+		const response = new GetBooksResponse();
+		response.data = this.mapper.mapArray(books, Book, BookResponse);
+		response.totalCount = count;
+		response.currentPage = query.pageNumber;
+		return response;
 	}
 }
