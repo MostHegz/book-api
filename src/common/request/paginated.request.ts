@@ -19,4 +19,8 @@ export class PaginatedRequest {
 	@Min(1)
 	@Type(() => Number)
 	pageSize: number = DefaultValuesConstants.DEFAULT_PAGE_SIZE;
+
+	get skipCount(): number {
+		return (this.pageNumber - 1) * this.pageSize;
+	}
 }

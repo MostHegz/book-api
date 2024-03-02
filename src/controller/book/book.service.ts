@@ -24,7 +24,7 @@ export class BookService {
 
 	async find(query: GetBooksRequest): Promise<GetBooksResponse> {
 		this.logger.log(`Finding books with ${query}`);
-		const [books, count] = await this.bookRepository.getMany(query.searchTerm);
+		const [books, count] = await this.bookRepository.getMany(query.searchTerm, query.skipCount, query.pageSize);
 		const response = new GetBooksResponse();
 		response.data = this.mapper.mapArray(books, Book, BookResponse);
 		response.totalCount = count;
