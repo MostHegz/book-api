@@ -1,4 +1,4 @@
-add a .env file that contain the following
+add a .env file that contain the following (make sure to set the port different than the frontend)
 
 ```bash
 PORT=3001
