@@ -5,6 +5,12 @@ PORT=3001
 BASE_URL=http://localhost
 ```
 
+install node dependencies
+
+```bash
+npm install
+```
+
 migrate the db by running the script
 
 ```bash
