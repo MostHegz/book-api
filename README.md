@@ -1,7 +1,7 @@
 add a .env file that contain the following
 
 ```bash
-PORT=3000
+PORT=3001
 BASE_URL=http://localhost
 ```
 
@@ -9,4 +9,16 @@ migrate the db by running the script
 
 ```bash
 npm run migrate
+```
+
+finally start the api
+
+```bash
+npm start
+```
+
+after app is started you can see the api documentation through
+
+```javascript
+`${BASE_URL}:${PORT}/swagger`;
 ```
