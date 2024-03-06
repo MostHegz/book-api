@@ -1,8 +1,14 @@
-add a .env file that contain the following
+add a .env file that contain the following (make sure to set the port different than the frontend)
 
 ```bash
 PORT=3001
 BASE_URL=http://localhost
+```
+
+install node dependencies
+
+```bash
+npm install
 ```
 
 migrate the db by running the script
