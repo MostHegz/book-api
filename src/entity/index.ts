@@ -1,1 +1,3 @@
-export class Test {}
+import { Book } from './book.entity';
+
+export { Book };
